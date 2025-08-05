@@ -33,7 +33,7 @@ Estudos da indústria de software demonstram que o custo de manutenção de sist
 Imagine uma empresa de e-commerce que decide implementar rapidamente um sistema de carrinho de compras sem se preocupar com qualidade. O código inicial pode ser similar a isto:
 
 ```php
-// ❌ Código problemático sem boas práticas
+// Código problemático sem boas práticas
 function proc_cart($u, $items, $d) {
     $t = 0;
     foreach($items as $i) {
@@ -73,7 +73,7 @@ O princípio DRY, formulado por Andy Hunt e Dave Thomas no livro "The Pragmatic 
 Considere um sistema de e-commerce onde a validação de CPF está implementada em múltiplos lugares:
 
 ```php
-// ❌ Violação do princípio DRY - Código duplicado
+// Violação do princípio DRY - Código duplicado
 class UserController {
     public function register($data) {
         // Validação de CPF - DUPLICADA
@@ -122,7 +122,7 @@ class InvoiceService {
 #### Refatoração Aplicando DRY
 
 ```php
-// ✅ Código refatorado seguindo DRY
+// Código refatorado seguindo DRY
 class CpfValidator {
     public static function validate(string $cpf): bool {
         // ÚNICA FONTE DA VERDADE para validação de CPF
@@ -186,7 +186,7 @@ No contexto de programação, isso significa evitar complexidade desnecessária,
 Imagine que você precisa implementar um desconto de 10% para produtos em promoção. Um desenvolvedor com tendência ao over-engineering pode criar:
 
 ```php
-// ❌ Violação do princípio KISS - Over-engineering
+// Violação do princípio KISS - Over-engineering
 abstract class DiscountStrategy {
     abstract public function calculate($amount);
 }
@@ -252,7 +252,7 @@ $finalPrice = $calculator->calculateFinalPrice($product);
 #### Refatoração Aplicando KISS
 
 ```php
-// ✅ Código refatorado seguindo KISS
+// Código refatorado seguindo KISS
 class ProductService {
     const PROMOTION_DISCOUNT = 0.10; // 10% de desconto
     
@@ -292,7 +292,7 @@ Este princípio combate a tendência natural dos desenvolvedores de criar soluç
 Um desenvolvedor consciente de que o sistema pode crescer decide criar uma API completa, antecipando necessidades futuras:
 
 ```php
-// ❌ Violação do princípio YAGNI - Funcionalidades especulativas
+// Violação do princípio YAGNI - Funcionalidades especulativas
 class UserAPI {
     // Funcionalidades REALMENTE necessárias agora
     public function createUser($data) {
@@ -364,7 +364,7 @@ interface UserRepositoryInterface {
 #### Refatoração Aplicando YAGNI
 
 ```php
-// ✅ Código refatorado seguindo YAGNI
+// Código refatorado seguindo YAGNI
 class UserService {
     private $repository;
     
@@ -432,7 +432,7 @@ Donald Knuth, renomado cientista da computação, afirmou que **"otimização pr
 #### Exemplo de Otimização Prematura
 
 ```php
-// ❌ Código "otimizado" prematuramente - difícil de entender
+// Código "otimizado" prematuramente - difícil de entender
 function calc($d) {
     $t = 0; $c = count($d);
     for($i = 0; $i < $c; ++$i) {
@@ -446,7 +446,7 @@ function calc($d) {
 Versus:
 
 ```php
-// ✅ Código legível e maintível
+// Código legível e maintível
 function calculateOrderTotal(array $items): float {
     $total = 0.0;
     
@@ -473,7 +473,7 @@ Para consolidar o entendimento dos três princípios, vamos analisar um sistema 
 #### Código Original - Violando os Três Princípios
 
 ```php
-// ❌ Sistema problemático violando DRY, KISS e YAGNI
+// Sistema problemático violando DRY, KISS e YAGNI
 class OrderComplexSystem {
     private $db;
     
@@ -581,7 +581,7 @@ class PriceCalculationStrategyFactory {
 #### Código Refatorado - Aplicando DRY, KISS e YAGNI
 
 ```php
-// ✅ Sistema refatorado seguindo os três princípios
+// Sistema refatorado seguindo os três princípios
 class ValidationService {
     // DRY: Centralização das validações
     public static function validateEmail(string $email): bool {
